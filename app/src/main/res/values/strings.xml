@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SWG</string>
+    <string name="gl_title">Greater Than Less Than</string>
+    <string name="sm_title">Speed Match!</string>
+</resources>
