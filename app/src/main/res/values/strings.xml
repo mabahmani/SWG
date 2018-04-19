@@ -2,8 +2,9 @@
     <string name="app_name">SWG</string>
     <string name="gl_title">Greater Than Less Than</string>
     <string name="sm_title">Speed Match!</string>
-    <string name="remember_this">Remember This Shape And Color!</string>
+    <string name="does_it_match">Does It Match With Previous Shape!</string>
     <string name="non_of_them">Non of Them</string>
     <string name="one_of_them">one of them</string>
     <string name="both_of_them">both of them</string>
+    <string name="your_score">Your Score: %d</string>
 </resources>

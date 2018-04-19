@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/speed_match_start_game_bg"
@@ -11,10 +12,10 @@
         android:layout_width="match_parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="40dp"
-        android:text="@string/remember_this"
+        android:text="@string/does_it_match"
         android:textColor="@color/colorRoyalLight"
         android:gravity="center"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:layout_height="wrap_content" />
 
     <ImageView
@@ -29,7 +30,7 @@
 
     <ImageView
         android:id="@+id/sp_shapes_icon"
-        android:background="@color/colorRoyalDark"
+        android:background="@color/colorRoyalLight"
         android:layout_width="180dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -37,6 +38,17 @@
         android:layout_marginTop="20dp"
         app:layout_constraintDimensionRatio="1:1"
         android:layout_height="0dp" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="36sp"
+        android:layout_height="wrap_content" />
+
     <LinearLayout
         android:layout_width="0dp"
         android:orientation="horizontal"
@@ -56,6 +68,7 @@
             android:background="@drawable/round_btn"
             android:layout_margin="10dp"
             android:text="@string/non_of_them"
+            android:textSize="12sp"
             android:alpha=".8"
             android:layout_height="wrap_content" />
         <Button
@@ -66,6 +79,7 @@
             android:background="@drawable/round_btn"
             android:layout_margin="10dp"
             android:text="@string/one_of_them"
+            android:textSize="12sp"
             android:alpha=".8"
             android:layout_height="wrap_content" />
         <Button
@@ -76,9 +90,20 @@
             android:background="@drawable/round_btn"
             android:layout_margin="10dp"
             android:text="@string/both_of_them"
+            android:textSize="12sp"
             android:alpha=".8"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/counter"
+        android:layout_width="wrap_content"
+        android:text="3"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/sp_shapes_icon"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_height="wrap_content" />
 
 </android.support.constraint.ConstraintLayout>

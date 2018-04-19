@@ -2,16 +2,23 @@ package com.mab.swg;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -21,6 +28,8 @@ public class SpeedMatchStartGameFragment extends Fragment {
     private Button nonOfThem;
     private Button oneOfThem;
     private Button bothOfTheme;
+    private TextView count;
+    private TextView score_tv;
 
     private int shapesId [] = {R.drawable.c1,R.drawable.c2,R.drawable.c3,R.drawable.c4,R.drawable.c5,R.drawable.c6,
                                R.drawable.s1,R.drawable.s2,R.drawable.s3,R.drawable.s4,R.drawable.s5,R.drawable.s6,
@@ -36,6 +45,8 @@ public class SpeedMatchStartGameFragment extends Fragment {
 
     private int previousShape;
     private int currentShape;
+    private int counter = 3;
+    private int score = 0;
 
     @Nullable
     @Override
@@ -52,8 +63,35 @@ public class SpeedMatchStartGameFragment extends Fragment {
     }
 
     private void gameInit(){
+        nonOfThem.setEnabled(false);
+        oneOfThem.setEnabled(false);
+        bothOfTheme.setEnabled(false);
         previousShape = randomGenerate();
         shapes.setImageResource(shapesId[previousShape]);
+        counterAnimation();
+    }
+
+    private void gameStart(){
+        shapesAnimations();
+        nonOfThem.setEnabled(true);
+        oneOfThem.setEnabled(true);
+        bothOfTheme.setEnabled(true);
+        CountDownTimer countDownTimer = new CountDownTimer(30000, 1000) {
+            @Override
+            public void onTick(long l) {
+            }
+
+            @SuppressLint("StringFormatInvalid")
+            @Override
+            public void onFinish() {
+                shapes.setVisibility(View.INVISIBLE);
+                nonOfThem.setVisibility(View.INVISIBLE);
+                oneOfThem.setVisibility(View.INVISIBLE);
+                bothOfTheme.setVisibility(View.INVISIBLE);
+                score_tv.setText(getString(R.string.your_score,score));
+            }
+        };
+        countDownTimer.start();
     }
 
     private void onClicks(){
@@ -63,6 +101,7 @@ public class SpeedMatchStartGameFragment extends Fragment {
             public void onClick(View view) {
                 if(shapeColorId[previousShape] != shapeColorId [currentShape] && shapeSymbolId[previousShape] != shapeSymbolId[currentShape]){
                     check.setImageResource(R.drawable.ic_check_circle_black_24dp);
+                    score++;
                 }
                 else{
                     check.setImageResource(R.drawable.ic_cancel_black_24dp);
@@ -77,6 +116,7 @@ public class SpeedMatchStartGameFragment extends Fragment {
             public void onClick(View view) {
                 if(shapeColorId[previousShape] == shapeColorId [currentShape] || shapeSymbolId[previousShape] == shapeSymbolId[currentShape]){
                     check.setImageResource(R.drawable.ic_check_circle_black_24dp);
+                    score++;
                 }
                 else if(shapeColorId[previousShape] == shapeColorId [currentShape] && shapeSymbolId[previousShape] == shapeSymbolId[currentShape]){
                     check.setImageResource(R.drawable.ic_cancel_black_24dp);
@@ -94,6 +134,7 @@ public class SpeedMatchStartGameFragment extends Fragment {
             public void onClick(View view) {
                 if(shapeColorId [previousShape] == shapeColorId [currentShape] && shapeSymbolId [previousShape] == shapeSymbolId [currentShape]) {
                     check.setImageResource(R.drawable.ic_check_circle_black_24dp);
+                    score++;
                 }
                 else{
                     check.setImageResource(R.drawable.ic_cancel_black_24dp);
@@ -158,11 +199,57 @@ public class SpeedMatchStartGameFragment extends Fragment {
         setAlpha.setDuration(500);
         setAlpha.start();
     }
+
+    private void counterAnimation(){
+        ObjectAnimator scaleX = new ObjectAnimator().ofFloat(
+                count,
+                "scaleX",
+                1,4
+        );
+        scaleX.setDuration(1000);
+
+        ObjectAnimator scaleY = new ObjectAnimator().ofFloat(
+                count,
+                "scaleY",
+                1,4
+        );
+        scaleY.setDuration(1000);
+
+        ObjectAnimator alpha = new ObjectAnimator().ofFloat(
+                count,
+                "Alpha",
+                1,0
+        );
+        alpha.setDuration(1000);
+
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playTogether(scaleX,scaleY,alpha);
+        animatorSet.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                if(counter > 0)
+                    counterAnimation();
+                else
+                    gameStart();
+            }
+
+            @Override
+            public void onAnimationStart(Animator animation) {
+                super.onAnimationStart(animation);
+                count.setText(String.valueOf(counter));
+                counter--;
+            }
+        });
+        animatorSet.start();
+    }
     private void findViews(View view){
         shapes = view.findViewById(R.id.sp_shapes_icon);
         check = view.findViewById(R.id.sp_check_icon);
         nonOfThem = view.findViewById(R.id.btn_non_of_theme);
         oneOfThem = view.findViewById(R.id.btn_one_of_them);
         bothOfTheme = view.findViewById(R.id.btn_both_of_them);
+        count = view.findViewById(R.id.counter);
+        score_tv = view.findViewById(R.id.score);
     }
 }
