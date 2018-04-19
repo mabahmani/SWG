@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/speed_match_start_game_bg"
+    android:clickable="true"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/sp_remember_title"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="40dp"
+        android:text="@string/remember_this"
+        android:textColor="@color/colorRoyalLight"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/sp_check_icon"
+        android:layout_width="48dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sp_remember_title"
+        android:layout_marginTop="60dp"
+        app:layout_constraintDimensionRatio="1:1"
+        android:layout_height="0dp" />
+
+    <ImageView
+        android:id="@+id/sp_shapes_icon"
+        android:alpha="0.5"
+        android:background="@color/colorRoyalDark"
+        android:layout_width="180dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sp_check_icon"
+        android:layout_marginTop="20dp"
+        app:layout_constraintDimensionRatio="1:1"
+        android:layout_height="0dp" />
+    <LinearLayout
+        android:layout_width="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/sp_shapes_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+        android:layout_height="0dp">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:background="@drawable/round_btn"
+            android:layout_margin="10dp"
+            android:text="@string/non_of_them"
+            android:alpha=".8"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:background="@drawable/round_btn"
+            android:layout_margin="10dp"
+            android:text="@string/one_of_theme"
+            android:alpha=".8"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:background="@drawable/round_btn"
+            android:layout_margin="10dp"
+            android:text="@string/both_of_them"
+            android:alpha=".8"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

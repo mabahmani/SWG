@@ -2,4 +2,8 @@
     <string name="app_name">SWG</string>
     <string name="gl_title">Greater Than Less Than</string>
     <string name="sm_title">Speed Match!</string>
+    <string name="remember_this">Remember This Shape And Color!</string>
+    <string name="non_of_them">Non of Them</string>
+    <string name="one_of_theme">one of theme</string>
+    <string name="both_of_them">both of them</string>
 </resources>

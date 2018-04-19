@@ -10,5 +10,7 @@
     <color name="colorSaintPetersbergLight">#f5f7fa</color>
     <color name="colorBlueGrey400">#78909C</color>
     <color name="colorBlueGrey">#607D8B</color>
+    <color name="colorWinterNevaDark">#a1c4fd</color>
+    <color name="colorWinterNevaLight">#c2e9fb</color>
 
 </resources>
