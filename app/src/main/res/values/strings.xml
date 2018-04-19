@@ -4,6 +4,6 @@
     <string name="sm_title">Speed Match!</string>
     <string name="remember_this">Remember This Shape And Color!</string>
     <string name="non_of_them">Non of Them</string>
-    <string name="one_of_theme">one of theme</string>
+    <string name="one_of_them">one of them</string>
     <string name="both_of_them">both of them</string>
 </resources>

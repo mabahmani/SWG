@@ -59,15 +59,17 @@
             android:alpha=".8"
             android:layout_height="wrap_content" />
         <Button
+            android:id="@+id/btn_one_of_them"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_gravity="center"
             android:background="@drawable/round_btn"
             android:layout_margin="10dp"
-            android:text="@string/one_of_theme"
+            android:text="@string/one_of_them"
             android:alpha=".8"
             android:layout_height="wrap_content" />
         <Button
+            android:id="@+id/btn_both_of_them"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_gravity="center"

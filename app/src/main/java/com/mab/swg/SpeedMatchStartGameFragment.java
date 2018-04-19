@@ -7,7 +7,6 @@ import android.app.Fragment;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +17,7 @@ import java.util.Random;
 
 public class SpeedMatchStartGameFragment extends Fragment {
     private ImageView shapes;
+    private ImageView check;
     private Button nonOfThem;
     private Button oneOfThem;
     private Button bothOfTheme;
@@ -34,6 +34,9 @@ public class SpeedMatchStartGameFragment extends Fragment {
                                     2,2,2,2,2,2,
                                     3,3,3,3,3,3};
 
+    private int previousShape;
+    private int currentShape;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -44,13 +47,13 @@ public class SpeedMatchStartGameFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         findViews(view);
+        gameInit();
         onClicks();
-        Random random = new Random();
-        int x= random.nextInt() % 18;
-        if(x < 0){
-            x*=-1;
-        }
-        shapes.setImageResource(shapesId[x]);
+    }
+
+    private void gameInit(){
+        previousShape = randomGenerate();
+        shapes.setImageResource(shapesId[previousShape]);
     }
 
     private void onClicks(){
@@ -58,10 +61,58 @@ public class SpeedMatchStartGameFragment extends Fragment {
         nonOfThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(shapeColorId[previousShape] != shapeColorId [currentShape] && shapeSymbolId[previousShape] != shapeSymbolId[currentShape]){
+                    check.setImageResource(R.drawable.ic_check_circle_black_24dp);
+                }
+                else{
+                    check.setImageResource(R.drawable.ic_cancel_black_24dp);
+                }
+                checkAnimation();
                 shapesAnimations();
             }
         });
 
+        oneOfThem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(shapeColorId[previousShape] == shapeColorId [currentShape] || shapeSymbolId[previousShape] == shapeSymbolId[currentShape]){
+                    check.setImageResource(R.drawable.ic_check_circle_black_24dp);
+                }
+                else if(shapeColorId[previousShape] == shapeColorId [currentShape] && shapeSymbolId[previousShape] == shapeSymbolId[currentShape]){
+                    check.setImageResource(R.drawable.ic_cancel_black_24dp);
+                }
+                else{
+                    check.setImageResource(R.drawable.ic_cancel_black_24dp);
+                }
+                checkAnimation();
+                shapesAnimations();
+            }
+        });
+
+        bothOfTheme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(shapeColorId [previousShape] == shapeColorId [currentShape] && shapeSymbolId [previousShape] == shapeSymbolId [currentShape]) {
+                    check.setImageResource(R.drawable.ic_check_circle_black_24dp);
+                }
+                else{
+                    check.setImageResource(R.drawable.ic_cancel_black_24dp);
+                }
+
+                checkAnimation();
+                shapesAnimations();
+            }
+        });
+
+    }
+
+    private int randomGenerate(){
+        Random random = new Random();
+        int x= random.nextInt() % 18;
+        if(x < 0){
+            x*=-1;
+        }
+        return x;
     }
 
     private void shapesAnimations(){
@@ -75,15 +126,17 @@ public class SpeedMatchStartGameFragment extends Fragment {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                Random random = new Random();
-                int x= random.nextInt() % 18;
-                if(x < 0){
-                    x*=-1;
-                }
-                Log.d("Tag",x+"");
-                shapes.setImageResource(shapesId[x]);
+                currentShape = randomGenerate();
+                shapes.setImageResource(shapesId[currentShape]);
+            }
+
+            @Override
+            public void onAnimationStart(Animator animation) {
+                super.onAnimationStart(animation);
+                previousShape = currentShape;
             }
         });
+
         centerToLeftTranslation.start();
 
         ObjectAnimator rightToCenterTranslation = new ObjectAnimator().ofFloat(
@@ -96,8 +149,20 @@ public class SpeedMatchStartGameFragment extends Fragment {
         rightToCenterTranslation.start();
     }
 
+    private void checkAnimation(){
+        ObjectAnimator setAlpha = new ObjectAnimator().ofFloat(
+                check,
+                "Alpha",
+                0f,1f,0f
+        );
+        setAlpha.setDuration(500);
+        setAlpha.start();
+    }
     private void findViews(View view){
         shapes = view.findViewById(R.id.sp_shapes_icon);
+        check = view.findViewById(R.id.sp_check_icon);
         nonOfThem = view.findViewById(R.id.btn_non_of_theme);
+        oneOfThem = view.findViewById(R.id.btn_one_of_them);
+        bothOfTheme = view.findViewById(R.id.btn_both_of_them);
     }
 }
