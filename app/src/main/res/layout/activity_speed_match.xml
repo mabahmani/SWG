@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/speed_match_activity_bg"
+    tools:context=".SpeedMatchActivity">
+
+    <TextView
+        android:id="@+id/sp_title"
+        android:layout_width="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="80dp"
+        android:text="@string/sm_title"
+        android:textSize="36sp"
+        android:textColor="@color/colorBlueGrey400"
+        android:shadowColor="@color/colorBlueGrey"
+        android:shadowRadius="4"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/sp_play_icon"
+        android:layout_width="wrap_content"
+        android:background="@drawable/ic_play_circle_outline_black_24dp"
+        app:layout_constraintTop_toBottomOf="@id/sp_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:background="@drawable/ic_format_list_numbered_black_24dp"
+        app:layout_constraintTop_toBottomOf="@id/sp_play_icon"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_height="wrap_content" />
+
+</android.support.constraint.ConstraintLayout>

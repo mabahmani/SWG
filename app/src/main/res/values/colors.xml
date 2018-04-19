@@ -6,5 +6,9 @@
     <color name="colorRoyalDark">#141e30</color>
     <color name="colorRoyalLight">#243b55</color>
     <color name="colorLightestBlue">#BBDEFB</color>
+    <color name="colorSaintPetersbergDark">#c3cfe2</color>
+    <color name="colorSaintPetersbergLight">#f5f7fa</color>
+    <color name="colorBlueGrey400">#78909C</color>
+    <color name="colorBlueGrey">#607D8B</color>
 
 </resources>
