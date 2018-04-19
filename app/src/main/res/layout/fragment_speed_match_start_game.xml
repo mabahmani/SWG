@@ -29,7 +29,6 @@
 
     <ImageView
         android:id="@+id/sp_shapes_icon"
-        android:alpha="0.5"
         android:background="@color/colorRoyalDark"
         android:layout_width="180dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -50,6 +49,7 @@
         android:layout_height="0dp">
 
         <Button
+            android:id="@+id/btn_non_of_theme"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_gravity="center"
