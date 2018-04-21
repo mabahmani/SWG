@@ -6,6 +6,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
@@ -54,6 +55,9 @@ public class WhichOneIsLargerStartGameFragment extends Fragment {
     }
 
     private void gameInit(){
+        leftButton.setVisibility(View.INVISIBLE);
+        rightButton.setVisibility(View.INVISIBLE);
+        equalButton.setVisibility(View.INVISIBLE);
         leftButton.setEnabled(false);
         rightButton.setEnabled(false);
         equalButton.setEnabled(false);
@@ -66,6 +70,10 @@ public class WhichOneIsLargerStartGameFragment extends Fragment {
     }
 
     private void gameStart(){
+        leftButton.setVisibility(View.VISIBLE);
+        rightButton.setVisibility(View.VISIBLE);
+        equalButton.setVisibility(View.VISIBLE);
+        buttonsAnimation();
         leftButton.setEnabled(true);
         rightButton.setEnabled(true);
         equalButton.setEnabled(true);
@@ -132,6 +140,32 @@ public class WhichOneIsLargerStartGameFragment extends Fragment {
         return x;
     }
 
+    private void buttonsAnimation(){
+        ObjectAnimator  TranslationX1 = new ObjectAnimator().ofFloat(
+                leftButton,
+                "TranslationX",
+                -Resources.getSystem().getDisplayMetrics().widthPixels,0
+        );
+        TranslationX1.setDuration(500);
+
+        ObjectAnimator  TranslationX2 = new ObjectAnimator().ofFloat(
+                rightButton,
+                "TranslationX",
+                Resources.getSystem().getDisplayMetrics().widthPixels,0
+        );
+        TranslationX2.setDuration(500);
+
+        ObjectAnimator  TranslationY = new ObjectAnimator().ofFloat(
+                equalButton,
+                "TranslationY",
+                Resources.getSystem().getDisplayMetrics().heightPixels,0
+        );
+        TranslationY.setDuration(500);
+
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playTogether(TranslationX1,TranslationX2,TranslationY);
+        animatorSet.start();
+    }
     private void counterAnimation(){
         ObjectAnimator scaleX = new ObjectAnimator().ofFloat(
                 count,
