@@ -20,6 +20,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.util.Random;
 
 public class SpeedMatchStartGameFragment extends Fragment {
@@ -48,9 +50,17 @@ public class SpeedMatchStartGameFragment extends Fragment {
     private int counter = 3;
     private int score = 0;
 
+    private String playerName;
+
+    private void readArguments(){
+        playerName = getArguments().getString("player_name",null);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+
+        readArguments();
         return inflater.inflate(R.layout.fragment_speed_match_start_game,container,false);
     }
 
@@ -89,9 +99,18 @@ public class SpeedMatchStartGameFragment extends Fragment {
                 oneOfThem.setVisibility(View.INVISIBLE);
                 bothOfTheme.setVisibility(View.INVISIBLE);
                 score_tv.setText(getString(R.string.your_score,score));
+                updateBestScore();
             }
         };
         countDownTimer.start();
+    }
+
+    private void updateBestScore(){
+        Users user = new Users();
+        user.setName(playerName);
+        user.setScor(score);
+
+        SpeedMatchPreferenceManager.getInstance(getActivity()).putBestUser(user);
     }
 
     private void onClicks(){

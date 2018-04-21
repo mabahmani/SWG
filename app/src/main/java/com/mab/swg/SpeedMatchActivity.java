@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 public class SpeedMatchActivity extends AppCompatActivity {
     ImageView startGame;
+    ImageView rankList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,9 @@ public class SpeedMatchActivity extends AppCompatActivity {
                                 Log.d("Tag",playerName);
 
                                 SpeedMatchStartGameFragment speedMatchStartGameFragment = new SpeedMatchStartGameFragment();
+                                Bundle bundle = new Bundle();
+                                bundle.putString("player_name",playerName);
+                                speedMatchStartGameFragment.setArguments(bundle);
                                 getFragmentManager().beginTransaction()
                                         .add(R.id.sp_play_fragment,speedMatchStartGameFragment)
                                         .addToBackStack(null)
@@ -42,10 +46,24 @@ public class SpeedMatchActivity extends AppCompatActivity {
 
             }
         });
+
+        rankList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SpeedMatchRankListFragment speedMatchRankListFragment = new SpeedMatchRankListFragment();
+                getFragmentManager().beginTransaction()
+                        .add(R.id.sp_rank_list_fragment,speedMatchRankListFragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
+
     }
 
     private void findViews(){
 
         startGame = findViewById(R.id.sp_play_icon);
+        rankList = findViewById(R.id.sp_rank_list_icon);
     }
 }
