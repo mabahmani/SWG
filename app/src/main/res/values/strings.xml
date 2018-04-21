@@ -7,4 +7,6 @@
     <string name="one_of_them">one of them</string>
     <string name="both_of_them">both of them</string>
     <string name="your_score">Your Score: %d</string>
+    <string name="enter_your_name">Enter Your Name:</string>
+    <string name="confirm">Confirm</string>
 </resources>
