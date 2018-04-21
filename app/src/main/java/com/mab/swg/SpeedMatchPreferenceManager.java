@@ -25,27 +25,9 @@ public class SpeedMatchPreferenceManager {
         return instance;
     }
 
-    public void putBestUser(Users user){
+    public void putRankList(SpeedMatchRankList speedMatchRankList){
         Gson gson = new Gson();
-        String userJson = gson.toJson(user,Users.class);
-        editor.putString("best_user",userJson);
-        editor.apply();
-    }
-
-    public Users getBestUser(){
-        String userJson = sharedPreferences.getString("best_user",null);
-        if (userJson == null)
-            return null;
-
-        Gson gson = new Gson();
-
-        return gson.fromJson(userJson,Users.class);
-
-    }
-
-    public void putRankList(SpeedMatchRankList rankList){
-        Gson gson = new Gson();
-        String rankListJson = gson.toJson(rankList,SpeedMatchRankList.class);
+        String rankListJson = gson.toJson(speedMatchRankList,SpeedMatchRankList.class);
         editor.putString("rank_list",rankListJson);
         editor.apply();
     }

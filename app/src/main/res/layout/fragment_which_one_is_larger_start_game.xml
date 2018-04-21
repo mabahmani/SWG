@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/which_one_is_larger_start_game_bg"
+    android:clickable="true"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/gl_score"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="36sp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:textSize="28sp"
+        android:text="@string/which_one_is_larger"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/left_btn"
+        android:layout_width="wrap_content"
+        android:background="@drawable/round2_btn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/equal_btn"
+        app:layout_constraintRight_toLeftOf="@+id/right_btn"
+        android:textSize="36sp"
+        android:textColor="@color/colorRoyalLight"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/right_btn"
+        android:layout_width="wrap_content"
+        android:background="@drawable/round2_btn"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/equal_btn"
+        app:layout_constraintLeft_toRightOf="@+id/left_btn"
+        android:textColor="@color/colorRoyalLight"
+        android:textSize="36sp"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/equal_btn"
+        android:layout_width="wrap_content"
+        android:background="@drawable/round2_btn"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="140dp"
+        android:textColor="@color/colorRoyalLight"
+        android:textSize="22sp"
+        android:text="@string/equal"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/gl_counter"
+        android:layout_width="wrap_content"
+        android:text="3"
+        android:textSize="36sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_height="wrap_content" />
+
+</android.support.constraint.ConstraintLayout>

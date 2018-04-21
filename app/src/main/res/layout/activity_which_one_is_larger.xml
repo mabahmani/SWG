@@ -33,12 +33,34 @@
         android:layout_marginTop="20dp"
         android:layout_height="wrap_content" />
     <ImageView
+        android:id="@+id/gl_rank_list_icon"
         android:layout_width="wrap_content"
         android:background="@drawable/ic_format_list_numbered_black_24dp"
         app:layout_constraintTop_toBottomOf="@id/gl_play_icon"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:id="@+id/gl_play_fragment"
+        android:layout_width="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_height="0dp">
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/gl_rank_list_fragment"
+        android:layout_width="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_height="0dp">
+    </FrameLayout>
 
 
 </android.support.constraint.ConstraintLayout>

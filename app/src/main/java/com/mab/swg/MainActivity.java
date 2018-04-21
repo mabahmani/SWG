@@ -11,7 +11,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     TextView tv1,tv2;
-    FrameLayout frameLayout;
+    FrameLayout speedMatch;
+    FrameLayout whichOneIsLarger;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,8 +20,10 @@ public class MainActivity extends AppCompatActivity {
         tv1 = findViewById(R.id.sp_title);
         tv2 = findViewById(R.id.gl_title);
 
-        frameLayout = findViewById(R.id.speed_match_start_fragment);
-        frameLayout.setOnClickListener(new View.OnClickListener() {
+        speedMatch = findViewById(R.id.speed_match_start_fragment);
+        whichOneIsLarger = findViewById(R.id.which_one_is_larger_start_fragment);
+
+        speedMatch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,SpeedMatchActivity.class);
@@ -28,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        whichOneIsLarger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,WhichOneIsLargerActivity.class);
+                startActivity(intent);
+            }
+        });
         Typeface typeface = Typeface.createFromAsset(getAssets(),"fonts/GILSANUB.TTF");
         tv1.setTypeface(typeface);
         tv2.setTypeface(typeface);

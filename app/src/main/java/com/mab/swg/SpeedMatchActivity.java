@@ -8,8 +8,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 public class SpeedMatchActivity extends AppCompatActivity {
-    ImageView startGame;
-    ImageView rankList;
+    private ImageView startGame;
+    private ImageView rankList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +29,6 @@ public class SpeedMatchActivity extends AppCompatActivity {
                         new OnNameSelectedListener() {
                             @Override
                             public void OnNameSelected(String playerName) {
-                                Log.d("Tag",playerName);
-
                                 SpeedMatchStartGameFragment speedMatchStartGameFragment = new SpeedMatchStartGameFragment();
                                 Bundle bundle = new Bundle();
                                 bundle.putString("player_name",playerName);

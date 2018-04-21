@@ -9,4 +9,6 @@
     <string name="your_score">Your Score: %d</string>
     <string name="enter_your_name">Enter Your Name:</string>
     <string name="confirm">Confirm</string>
+    <string name="which_one_is_larger">Which One Is Larger !</string>
+    <string name="equal">Equal</string>
 </resources>
