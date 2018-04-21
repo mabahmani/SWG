@@ -3,13 +3,18 @@ package com.mab.swg;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import java.util.Collections;
+import java.util.Comparator;
 
 public class SpeedMatchRankListFragment extends Fragment{
-    private TextView bestUser;
+    private RecyclerView rankList;
+    private UserAdapter userAdapter;
 
     @Nullable
     @Override
@@ -22,11 +27,33 @@ public class SpeedMatchRankListFragment extends Fragment{
         super.onViewCreated(view, savedInstanceState);
 
         findViews(view);
-
-        bestUser.setText(SpeedMatchPreferenceManager.getInstance(getActivity()).getBestUser()+"");
+        rankListInit();
     }
 
-    void findViews(View view){
-        bestUser = view.findViewById(R.id.best_user_tv);
+    private void rankListInit(){
+        SpeedMatchRankList speedMatchRankList = SpeedMatchPreferenceManager.getInstance(getActivity()).getRankList();
+
+        Comparator comparator = new Comparator<Users>() {
+            @Override
+            public int compare(Users x, Users y) {
+                if(x.getScor() > y.getScor())
+                    return -1;
+                else if(x.getScor() < y.getScor())
+                    return +1;
+                else
+                    return 0;
+            }
+        };
+
+        Collections.sort(speedMatchRankList.getRankList(),comparator);
+
+        userAdapter = new UserAdapter(speedMatchRankList.getRankList());
+        rankList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rankList.setAdapter(userAdapter);
+
+    }
+
+    private void findViews(View view){
+        rankList = view.findViewById(R.id.sp_rank_list);
     }
 }

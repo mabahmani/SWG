@@ -99,18 +99,20 @@ public class SpeedMatchStartGameFragment extends Fragment {
                 oneOfThem.setVisibility(View.INVISIBLE);
                 bothOfTheme.setVisibility(View.INVISIBLE);
                 score_tv.setText(getString(R.string.your_score,score));
-                updateBestScore();
+                updateRankList();
             }
         };
         countDownTimer.start();
     }
 
-    private void updateBestScore(){
+    private void updateRankList(){
         Users user = new Users();
         user.setName(playerName);
         user.setScor(score);
 
-        SpeedMatchPreferenceManager.getInstance(getActivity()).putBestUser(user);
+        SpeedMatchRankList speedMatchRankList = SpeedMatchPreferenceManager.getInstance(getActivity()).getRankList();
+        speedMatchRankList.addUser(user);
+        SpeedMatchPreferenceManager.getInstance(getActivity()).putRankList(speedMatchRankList);
     }
 
     private void onClicks(){

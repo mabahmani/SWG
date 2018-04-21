@@ -42,4 +42,21 @@ public class SpeedMatchPreferenceManager {
         return gson.fromJson(userJson,Users.class);
 
     }
+
+    public void putRankList(SpeedMatchRankList rankList){
+        Gson gson = new Gson();
+        String rankListJson = gson.toJson(rankList,SpeedMatchRankList.class);
+        editor.putString("rank_list",rankListJson);
+        editor.apply();
+    }
+
+    public SpeedMatchRankList getRankList(){
+        String rankListJson = sharedPreferences.getString("rank_list",null);
+
+        if (rankListJson == null)
+            return new SpeedMatchRankList();
+        Gson gson = new Gson();
+
+        return gson.fromJson(rankListJson,SpeedMatchRankList.class);
+    }
 }
