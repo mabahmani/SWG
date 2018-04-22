@@ -27,6 +27,7 @@ public class SpeedMatchStartGameFragment extends Fragment {
     private Button bothOfTheme;
     private TextView count;
     private TextView score_tv;
+    private TextView remainingTime;
 
     private int shapesId [] = {R.drawable.c1,R.drawable.c2,R.drawable.c3,R.drawable.c4,R.drawable.c5,R.drawable.c6,
                                R.drawable.s1,R.drawable.s2,R.drawable.s3,R.drawable.s4,R.drawable.s5,R.drawable.s6,
@@ -44,6 +45,8 @@ public class SpeedMatchStartGameFragment extends Fragment {
     private int currentShape;
     private int counter = 3;
     private int score = 0;
+
+    private CountDownTimer countDownTimer;
 
     private String playerName;
 
@@ -81,14 +84,17 @@ public class SpeedMatchStartGameFragment extends Fragment {
         nonOfThem.setEnabled(true);
         oneOfThem.setEnabled(true);
         bothOfTheme.setEnabled(true);
-        CountDownTimer countDownTimer = new CountDownTimer(30000, 1000) {
+        countDownTimer = new CountDownTimer(30000, 1000) {
             @Override
             public void onTick(long l) {
+                int t = (int) l/1000;
+                remainingTime.setText(getString(R.string.remaining_time,t));
             }
 
-            @SuppressLint("StringFormatInvalid")
+            @SuppressLint({"StringFormatInvalid", "SetTextI18n"})
             @Override
             public void onFinish() {
+                remainingTime.setText(R.string.game_finished);
                 shapes.setVisibility(View.INVISIBLE);
                 nonOfThem.setVisibility(View.INVISIBLE);
                 oneOfThem.setVisibility(View.INVISIBLE);
@@ -267,5 +273,22 @@ public class SpeedMatchStartGameFragment extends Fragment {
         bothOfTheme = view.findViewById(R.id.btn_both_of_them);
         count = view.findViewById(R.id.counter);
         score_tv = view.findViewById(R.id.score);
+        remainingTime = view.findViewById(R.id.sp_remaining_time);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (countDownTimer != null){
+            countDownTimer.cancel();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (countDownTimer != null){
+            countDownTimer.cancel();
+        }
     }
 }

@@ -17,6 +17,7 @@
         android:layout_height="wrap_content" />
 
     <TextView
+        android:id="@+id/which_one_is_larger_title"
         android:layout_width="0dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -25,6 +26,15 @@
         android:gravity="center_horizontal"
         android:textSize="28sp"
         android:text="@string/which_one_is_larger"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/gl_remaining_time"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/which_one_is_larger_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/left_btn"
+        android:textSize="18sp"
         android:layout_height="wrap_content" />
 
     <Button

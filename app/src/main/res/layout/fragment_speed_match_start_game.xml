@@ -17,6 +17,15 @@
         android:gravity="center"
         android:textSize="18sp"
         android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/sp_remaining_time"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/sp_remember_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/counter"
+        android:textSize="18sp"
+        android:layout_height="wrap_content" />
 
     <ImageView
         android:id="@+id/sp_check_icon"

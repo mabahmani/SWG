@@ -22,6 +22,7 @@ public class WhichOneIsLargerStartGameFragment extends Fragment {
 
     private TextView count;
     private TextView score_tv;
+    private TextView remainingTime;
     private Button  leftButton;
     private Button  rightButton;
     private Button  equalButton;
@@ -32,6 +33,7 @@ public class WhichOneIsLargerStartGameFragment extends Fragment {
     private int counter = 3;
     private int score = 0;
 
+    private CountDownTimer countDownTimer;
     private String playerName;
 
     private void readArguments(){
@@ -77,14 +79,17 @@ public class WhichOneIsLargerStartGameFragment extends Fragment {
         leftButton.setEnabled(true);
         rightButton.setEnabled(true);
         equalButton.setEnabled(true);
-        CountDownTimer countDownTimer = new CountDownTimer(10000, 1000) {
+        countDownTimer = new CountDownTimer(10000, 1000) {
             @Override
             public void onTick(long l) {
+                int t = (int) (l/1000);
+                remainingTime.setText(getString(R.string.remaining_time,t));
             }
 
             @SuppressLint("StringFormatInvalid")
             @Override
             public void onFinish() {
+                remainingTime.setText(R.string.game_finished);
                 leftButton.setVisibility(View.INVISIBLE);
                 rightButton.setVisibility(View.INVISIBLE);
                 equalButton.setVisibility(View.INVISIBLE);
@@ -215,5 +220,22 @@ public class WhichOneIsLargerStartGameFragment extends Fragment {
         equalButton = view.findViewById(R.id.equal_btn);
         count = view.findViewById(R.id.gl_counter);
         score_tv = view.findViewById(R.id.gl_score);
+        remainingTime = view.findViewById(R.id.gl_remaining_time);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (countDownTimer != null){
+            countDownTimer.cancel();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (countDownTimer != null){
+            countDownTimer.cancel();
+        }
     }
 }
